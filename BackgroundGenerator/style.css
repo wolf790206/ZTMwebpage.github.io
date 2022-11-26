@@ -1,3 +1,6 @@
+* {
+	position: relative;
+}
 body {
 	font-family: Helvetica, sans-serif;
 	text-align: center;
@@ -23,6 +26,15 @@ input {
 h1 {
 	font-weight: 600;
 	font-size: 3.5rem;
+}
+@media only screen and (max-width: 450px) {
+	h1 {
+		font-size: 2rem;
+	}
+	input {
+		width: 80px;
+		height: 80px;
+	}
 }
 h3 {
 	font-weight: 900;
@@ -56,4 +68,31 @@ h3 {
 		top: 1%;
 		transform: translate(-50%, 0%);
 	}
+}
+.circle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100px;
+	height: 100px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+}
+
+.btn {
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #888;
+	border-radius: 50%;
+	background: #eee;
+	overflow: visible;
+	transition: 0.2s;
 }

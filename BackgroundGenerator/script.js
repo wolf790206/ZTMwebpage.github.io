@@ -27,3 +27,57 @@ css.addEventListener("click", function () {
 		}
 	);
 });
+
+// deg
+var btn = document.querySelector(".btn");
+var box = document.querySelector(".circle");
+
+var [windowW, windowH] = [window.innerWidth, window.innerHeight];
+var [halfW, halfH] = [windowW / 2, windowH / 2];
+var startX = halfW,
+	startY = halfH,
+	isCapture;
+
+const Screen2Cartesian = ({ x, y }) => ({
+	x: x - halfW,
+	y: halfH - y,
+});
+
+btn.onpointerdown = onStart;
+
+function onResize() {
+	[windowW, windowH] = [window.innerWidth, window.innerHeight];
+	[halfW, halfH] = [windowW / 2, windowH / 2];
+}
+
+window.onresize = onResize;
+
+function onStart(e) {
+	isCapture = true;
+	document.addEventListener("pointermove", onMove);
+	document.addEventListener("pointerup", onEnd);
+}
+
+function onEnd(e) {
+	isCapture = false;
+	startX = startY = null;
+	document.removeEventListener("pointermove", onMove);
+	document.removeEventListener("pointerup", onEnd);
+}
+
+function onMove(e) {
+	if (!isCapture) return;
+	var [x, y] = [e.clientX, e.clientY];
+	computePosition(x, y);
+}
+
+function computePosition(x, y) {
+	var { x: cartX, y: cartY } = Screen2Cartesian({ x, y });
+	var atan2 = Math.atan2(cartY, cartX);
+	console.log(atan2);
+	box.style.transform = `rotate(${-1 * atan2}rad)`;
+	wrapper.style.background = `linear-gradient(${-1 * atan2 + 1.5}rad, ${color1.value}, ${color2.value})`;
+	css.textContent = wrapper.style.background;
+}
+
+computePosition(startX, startY);
