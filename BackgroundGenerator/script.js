@@ -1,6 +1,8 @@
 var css = document.querySelector("h3");
 var color1 = document.querySelector(".color1");
 var color2 = document.querySelector(".color2");
+var colorBtn1 = document.querySelector(".randomColor1");
+var colorBtn2 = document.querySelector(".randomColor2");
 var wrapper = document.getElementById("wrapper");
 var massage = document.querySelector(".massage");
 
@@ -10,9 +12,22 @@ function colorChoose() {
 	wrapper.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
 	css.textContent = wrapper.style.background;
 }
+function randomColor() {
+	let randomNum = [];
+	for (let i = 0; i < 3; i++) {
+		let x = Math.floor(Math.random() * 1000) % 255;
+		num = x.toString(16);
+		if (num.length === 1) num = "0" + num;
+		randomNum.push(num);
+	}
 
+	this.parentNode.children[0].value = `#${randomNum.join("")}`;
+	colorChoose();
+}
 color1.addEventListener("input", colorChoose);
 color2.addEventListener("input", colorChoose);
+colorBtn1.addEventListener("click", randomColor);
+colorBtn2.addEventListener("click", randomColor);
 css.addEventListener("click", function () {
 	navigator.clipboard.writeText(`${wrapper.style.background}`).then(
 		function () {
@@ -74,7 +89,7 @@ function onMove(e) {
 function computePosition(x, y) {
 	var { x: cartX, y: cartY } = Screen2Cartesian({ x, y });
 	var atan2 = Math.atan2(cartY, cartX);
-	console.log(atan2);
+	// console.log(atan2);
 	box.style.transform = `rotate(${-1 * atan2}rad)`;
 	wrapper.style.background = `linear-gradient(${-1 * atan2 + 1.5}rad, ${color1.value}, ${color2.value})`;
 	css.textContent = wrapper.style.background;

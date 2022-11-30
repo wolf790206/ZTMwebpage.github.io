@@ -19,6 +19,10 @@ body {
 	display: flex;
 	justify-content: space-around;
 }
+#chooseColor > div {
+	display: flex;
+	flex-direction: column;
+}
 input {
 	width: 100px;
 	height: 100px;
