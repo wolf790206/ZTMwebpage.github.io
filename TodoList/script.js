@@ -1,4 +1,9 @@
-//
+// string
+const userEmail = "          hcudhcudhu@gmail.com";
+const userEmail2 = "jijijiijij@gmail.com      ";
+console.log(userEmail.trimStart());
+console.log(userEmail2.trimEnd());
+
 data = [
 	{
 		userName: "andrei",
@@ -88,6 +93,13 @@ pets.includes("dog"); // true
 "Turtle".padStart(10); // "   Turtle"
 "Turtle".padEnd(10); // "Turtle   "
 
+// flat
+const array = [1, 2, 3, [3, 4]];
+array.flat(); // [1, 2, 3, 3, 4]
+
+// flatMap
+const arrayList = array.flatMap((num) => num + 1); // [2, 3, 4, '3,41']
+
 // Object.values, Object.entries, Object.keys
 let objData = {
 	userName0: "Santa",
@@ -95,11 +107,29 @@ let objData = {
 	userName2: "Mr.Grinch",
 };
 Object.keys(objData).forEach((key, index) => {
-	console.log(key, obj[key]);
+	console.log(key, objData[key]);
 });
 // userName0 Santa
 // userName1 Rudolf
 // userName2 Mr.Grinch
+
+Object.values(objData).forEach((value, index) => {
+	console.log(value);
+});
+// Santa
+// Rudolf
+// Mr.Grinch
+
+Object.entries(objData).forEach((value, index) => {
+	console.log(value);
+});
+// ['userName0', 'Santa']
+// ['userName1', 'Rudolf']
+// ['userName2', 'Mr.Grinch']
+
+const obj2 = Object.entries(objData);
+console.log(Object.fromEntries(obj2));
+// {userName0: 'Santa', userName1: 'Rudolf', userName2: 'Mr.Grinch'}
 
 // reference type
 var object1 = { value: 10 };
@@ -152,3 +182,9 @@ console.log(obj);
 console.log(clone1);
 console.log(clone2);
 console.log(superClone);
+
+try {
+	bob + "hi";
+} catch (error) {
+	console.log("you messed up", error);
+}
