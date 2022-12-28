@@ -187,4 +187,5 @@ try {
 	bob + "hi";
 } catch (error) {
 	console.log("you messed up", error);
+	console.log("you messed up", error);
 }
